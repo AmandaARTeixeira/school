@@ -22,3 +22,13 @@ class Course(models.Model):
 
     def __str__(self) -> str:
         return self.code
+    
+class Registration(models.Model):
+    PERIOD = (
+        ('M', 'Morning'),
+        ('A', 'Afternoon'),
+        ('N', 'Night'),
+    )
+    student = models.ForeignKey(Student, on_delete = models.CASCADE)
+    course = models.ForeignKey(Course, on_delete = models.CASCADE)
+    period = models.CharField(max_length = 1, choices = PERIOD, blank = False, null = False, default= 'M')
